@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class AddProduct {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// BaseClass
 		WebDriver driver = BaseClass.getDriver();
 
@@ -22,21 +22,28 @@ public class AddProduct {
 		// find the button and click on it
 		WebElement login = driver.findElement(By.className("btn-primary"));
 		login.click();
+		Thread.sleep(2000);
 
 		WebElement catalogue = driver.findElement(By.cssSelector("body > div.app-body > div > nav > ul > li:nth-child(3) > a"));
 		catalogue.click();
+		Thread.sleep(2000);
 
 		WebElement products = driver.findElement(By.xpath("//a[@href='http://18.209.122.163/admin/product']"));
 		products.click();
+		Thread.sleep(2000);
+		
 		WebElement add_product = driver.findElement(By.cssSelector("#app > div.container-fluid.animated.fadeIn > div > div > div.row.mb-0 > div:nth-child(1) > div > a"));
 		add_product.click();
+		Thread.sleep(2000);
 		
 		//product form fillup
 		WebElement product_type = driver.findElement(By.cssSelector("#tab_basic-info > div > div:nth-child(2) > select"));
 		product_type.click();
+		Thread.sleep(2000);
 		
 		WebElement normal = driver.findElement(By.cssSelector("#tab_basic-info > div > div:nth-child(2) > select > option:nth-child(1)"));
 		normal.click();
+		Thread.sleep(2000);
 		
 		WebElement product_name = driver.findElement(By.name("product_name"));
 		product_name.sendKeys("Demo Normal Product");
@@ -46,9 +53,11 @@ public class AddProduct {
 		
 		WebElement product_description = driver.findElement(By.cssSelector("#quill-container > div.ql-editor.ql-blank"));
 		product_description.sendKeys("This is normal product description");
-		
-		WebElement categories = driver.findElement(By.xpath("//div[@id='tab_basic-info']/div/div[6]/div/div/div[2]/div/div/div[3]/div/div[2]/label"));
-		categories.click();
+
+		WebElement classification = driver.findElement(By.xpath("//span[@class='vue-treeselect__multi-value-label']"));
+		classification.click();
+		Thread.sleep(2000);
+
 		
 //		WebElement product_classification = driver.findElement(By.className("vue-treeselect__input"));
 //		product_classification.click();
@@ -80,6 +89,8 @@ public class AddProduct {
 		
 		WebElement next_btn = driver.findElement(By.linkText("Next"));
 		next_btn.click();
+		
+		driver.close();
 	}
 
 }
